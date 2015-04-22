@@ -20,6 +20,7 @@ import Foundation
 /**
  * Utility to register an iOS device with the AeroGear UnifiedPush Server.
  */
+@objc
 public class AGDeviceRegistration: NSObject, NSURLSessionTaskDelegate {
     
     struct AGDeviceRegistrationError {
@@ -45,6 +46,7 @@ public class AGDeviceRegistration: NSObject, NSURLSessionTaskDelegate {
 
         let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
         self.session = NSURLSession(configuration: sessionConfig, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
+        println("Init...")
     }
     
     
@@ -65,7 +67,7 @@ public class AGDeviceRegistration: NSObject, NSURLSessionTaskDelegate {
     */
     public func registerWithClientInfo(clientInfo: ((config: AGClientDeviceInformation) -> Void)!,
         success:(() -> Void)!, failure:((NSError) -> Void)!) -> Void {
-            
+            println("register")
             // can't proceed with no configuration block set
             assert(clientInfo != nil, "configuration block not set")
 
